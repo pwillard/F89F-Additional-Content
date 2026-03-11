@@ -1,0 +1,8 @@
+XTTX150427
+==========
+
+Configured in the original 4 hitch layout that was later abandoned.  
+This was was formerly in Autorack service and was converted to TOFC service.
+The WAG configuration for this car has all hitches stowed and no trailers
+All the files needed for this are in this folder.
+Optionally, you can raise hitches, using the alternate hitch S files supplied.
