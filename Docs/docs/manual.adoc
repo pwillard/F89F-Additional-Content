@@ -195,6 +195,7 @@ The following is the list of cars developed for this content collection.
 |RTTX 151280		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, Yellow Speed letter TTX, No trailers
 |RTTX 150643		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, White Speed letter TTX, 1x45 at B-end.
 |XTTX 150247		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Black	| 4 hitches down, Max 3 deployed, Trailer Train Decal with centrally located "TT", No trailers, tire risers
+|XTTX 150246		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Orange  | 4 hitches, 3 early 26' trailers, Trailer Train Decal with centrally located "TT", tire risers  
 
 |===
 
@@ -202,17 +203,36 @@ The following is the list of cars developed for this content collection.
 
 The following is the list of trailers developed (so far)  for this content collection.
 
+* Pup trailers
+
 |===
 |Reporting Mark	| Type				| Livery 			| Notes
 
-| upsz29002		| 26'6" Pup Trailer | Early UPS 		| Rounded front end of trailer
-| upsz29101		| 28' Pup Trailer	| 1980's UPS 		| Angled front end of trailer
-| upsz294099    | 28' Low Deck Pup Trailer | Simple UPS | Lower Deck style with strip brush -- 'hula skirts'
-| upsz244109	| 28' Pup Trailer	| Modern UPS logo 	| with strip brush -- 'hula skirts'
-| upsz344456	| 28' Pup Trailer	| Modern UPS Logo  	| with strip brush -- 'hula skirts'
+| UPSZ29002		| 26'6" Pup Trailer | Early Ups 		| Rounded Front End Of Trailer, Ht. 12'6"
+| UPSZ29067		| 26'6" Pup Trailer | Early Ups			| Rounded Front End Of Trailer, Ht 12'6"
+| UPSZ29101		| 26'6" Pup Trailer	| Early Ups			| Rounded Front End Of Trailer, Ht. 12'6"
+| UPSZ294099    | 28' Low Deck Pup Trailer | Simple Ups | Lower Deck Style With Strip Brush -- 'Hula Skirts'
+| UPSZ292737    | 28' Low Deck Pup Trailer | Simple Ups | Lower Deck Style With Strip Brush -- 'Hula Skirts'
+| UPSZ293887    | 28' Low Deck Pup Trailer | Simple Ups | Lower Deck Style With Strip Brush -- 'Hula Skirts'
+| UPSZ244109	| 28' Pup Trailer	| Modern Ups Logo 	| With Strip Brush -- 'Hula Skirts'
+| UPSZ344456	| 28' Pup Trailer	| Modern Ups Logo  	| With Strip Brush -- 'Hula Skirts'
+| UPSZ338977    | 28' Pup Trailer   | Modern Ups Logo   | With Strip Brush -- 'Hula Skirts'
 
 |===
 
+* 45' Trailers
+
+|===
+|Reporting Mark	| Type				| Livery 			| Notes
+
+| UPSZ845115    | 45' Trailer 	| Early Ups 		    | Rounded Front End Of Trailer
+| UPSZ845624	| 45' Trailer 	| Early Ups				| Rounded Front End Of Trailer
+| UPSZ847170	| 45' Trailer	| Early Ups				| Rounded Front End Of Trailer
+| UPSZ845427	| 45' Trailer	| Modern Ups Logo 		| With Strip Brush -- 'Hula Skirts'
+| UPSZ847233	| 45' Trailer	| Modern Ups Logo  		| With Strip Brush -- 'Hula Skirts'
+| UPSZ846809    | 45' Trailer   | Modern Ups Logo   	| With Strip Brush -- 'Hula Skirts'
+
+|===
 
 
 [NOTE]
