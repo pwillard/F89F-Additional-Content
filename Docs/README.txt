@@ -2,7 +2,7 @@
 OpenRails Asciidoctor Documentation Template
 ===========================================
 
-This starter kit provides a clean layout for documenting 3D model
+This setup provides a clean layout for documenting 3D model
 content intended for the OpenRails simulator.
 
 Structure
@@ -33,22 +33,3 @@ To use the included theme:
 
     asciidoctor-pdf -a pdf-theme=docs/styles/theme.yml docs/manual.adoc
 
-Customization
--------------
-
-Typical sections already included:
-
-* Introduction
-* Installation
-* Using the Model
-* Customization
-* License
-* Copyright
-* Revision History
-
-You can expand this into:
-
-* Asset lists
-* Texture maps
-* Blender workflow
-* OpenRails configuration examples
