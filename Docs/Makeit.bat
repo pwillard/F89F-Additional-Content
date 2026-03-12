@@ -1,0 +1,1 @@
+asciidoctor-pdf -a pdf-theme=docs/styles/theme.yml docs/manual.adoc

@@ -1,0 +1,308 @@
+
+= F89F Flatcar
+Pete Willard
+:revnumber: 0.1
+:revdate: 2026
+:doctype: book
+:toc: left
+:toclevels: 3
+:icons: font
+:sectnums:
+:source-highlighter: rouge
+:imagesdir: images
+:docinfo: shared
+:title-page-background-image: image:blueprintflat.png[opts="align-to-page"]
+
+
+[.text-center]
+Version {revnumber} — {revdate}
+
+<<<
+
+== Introduction
+
+This document describes the installation, use, and customization of the
+OpenRails 3D model content included in this package.
+
+The goal of this documentation is to provide clear instructions for:
+
+* Installing the content
+* Using the models in OpenRails
+* Customizing textures or configurations
+* Understanding licensing and distribution rights
+
+=== Background
+
+This is a model of the Bethlehem F89F 89'4" flatcar.  The inspiration for this content was taken from an article in Mainline Modeler Magazine from April 1995.  While the model does not fully follow the example provided for the XTTX Trailer Train variant (which is based on a rebuild of a flatcar series formerly used for Autorack service), it is attempting to match more closely with the follow-up RTTX series of cas that were later marked as "Triple 28/Twin 45" service, which apparently used the flatcar in the article inspiration for the variable hitch arrangement that could support both 28' and 45' trailers.
+
+Many of the RTTX cars began life as tri-level open autoracks cars that were converted to Flatcar TOFC service.  The base model is a the Bethlehem 89'4" channel-side flatcar.
+
+The original flatcar has 5 possible hitch locations that can be raised or lowered as needed to load up to 3 28' trailers or 2 45' trailers.  With the RTTX series, the end cars were oriented so the hitch end faced outward, essentially flipping the trailer on the brake-end of the car.  The original XTTX cars actually had 4 hitches installed and also had tire risers to ensure that no part of the trailers would encounter the hitches as they were rolled on the car.  These cars contained the ramp plates to make roll-on loading possible.  The majority of the RTTX cars would have 3 hitches while the KTTX car series, the "twin 45" would only have the hitches installed at the extreme ends of the car.  Some versions the RTTX cars would have the 45' trailers facing the same direction with a hitch near the center of the car, but this layout seems rare.
+
+The arrangement of the trailers and hitches is detailed in a section below. 
+
+A version of the XTTX car is included in this collection with all for hitches installed, but in a stowed state of anyone wanting to see the original 28' pup trailer/ 45' trailer arrangement.  With the 4 Hitch setup, all trailers faced the same direction.  
+
+[NOTE] 
+This collection of content is not necessarily considered to be "plug-and-play".  It has been designed to give the user extreme flexibility.  While it could have been made even more flexible, at some point you have to stop and say "enough" and this got us to where we are now.
+
+image::RTTXdeck.jpg[]
+
+== Installation
+
+To install the model content:
+
+. Extract the ZIP archive
+. Copy the provided files into the appropriate OpenRails directories
+. Ensure texture and shape files remain in their original structure
+
+The cars are released as individual folders for each reporting mark so you can control which variants to install.  This does create some duplication of items and you could logically consolidate into a single folder if you wished to do so.
+
+Each Car and Trailer are individually named and use appropriately names texture files to go along with them.  With this distribution method, if you only wanted to install a single car, you would just install the appropriate folder to your `trainset` location.
+
+Example directory layout:
+
+----
+TRAINSET/
+    Specific Decaled Model/
+        Flatcar Model S files
+        FreightAnim Model S files
+        DDS texture files for flatcar and FreightAnim Hitches and Trailers
+        WAG file, with custom freight anim entries
+
+        
+----
+
+== Using the Models
+
+After installation, the model should appear inside OpenRails when the
+associated consist or rolling stock entry is loaded.
+
+Typical usage scenario:
+
+* Freight rolling stock, of course
+* Some of the trailer models contained can be used as Scenery Objects as well.
+
+[WARNING]
+The design of this content is built around the concept of flexibility. The flatcar itself has no hitches or trailers installed and must be added with FreightAnim statements.  
+
+=== Freight Animations
+
+The WAG file configuration determines the hitch installation of raised or stowed configuration in a choice of 3 colors ( Yellow/Orange, Black or Brown ).  This is done by configuration settings in the FreightAnim() section of the WAG file.
+
+Additionally, the choice of trailer type and trailer owner/markings is completely configurable by calling a specific trailer S file as a FreightAnim shape.
+
+Here is an example of how this is accomplished (for 3 pup trailers).
+
+[source,text]
+----
+
+Comment(Trailers are offset by 0.05 to line up with hitch point)
+
+	ORTSFreightAnims(
+
+		WagonEmptyWeight(36.7t-us)
+		Comment(Hitch #5)
+		Comment(Furthest from brake end) 
+		FreightAnimStatic (
+			Flip(1)
+			Shape(hitch-deployed-yello.s)
+			Offset(0.0 1.045 12.5)
+		)
+
+		FreightAnimStatic (
+			Flip(1)
+			Shape(Upsz29002.S)
+			Offset(0.0 1.045 12.45)
+			FreightWeight(3.0t)
+		)
+
+		Comment(Hitch #4)
+		FreightAnimStatic (
+			Shape(Hitch-Deployed-Black.S)
+			Offset(0.0 1.045 -3.2)
+		)
+		Freightanimstatic (
+			Shape(Upsz29110.S)
+			Offset(0.0 1.045 -3.15)
+			FreightWeight(3.0t)
+		)
+
+		Comment(Hitch #1)
+		FreightAnimStatic (
+			Shape(Hitch-Deployed-Yello.S)
+			Offset(0.0 1.045 -12.5)
+		)
+		Freightanimstatic (
+			Shape(Upsz294099.S)
+			Offset(0.0 1.045 -12.45)
+			FreightWeight(3.0t)
+		)
+
+	)
+
+----
+
+<<<
+
+==== Hitch Locations
+
+The following are the most reasonable hitch locations:
+
+[NOTE]
+Y axis is UP
+
+[cols="1,1,1,1,1,1,1,1", options="header", frame="all", grid="all"]
+|===
+|Location 	|Hitch 	|Trailer	|Trailer 	|X |Y 	|Z 			| Note
+
+|A-END      |1      |45'        |28'        |0 |1.045 |12.5		|
+|    		|2 		|    		|28' 		|0 |1.045 |5.58		| XTTX Only
+| 			|3 		|45'		|28' 		|0 |1.045 |1.0		| XTTX Only
+| 			|4 		|    		| 			|0 |1.045 |-3.2  	|
+|B-END 		|5 		|45' 		|28' 		|0 |1.045 |-12.5	| Flip
+|===
+
+
+
+Trailers should be added to the same offset location as the related hitch, adjusted by 0.05. Example: Trailer `Offset(0.0 1.045 -12.45)` 
+
+The Layout of the Trailers seems to follow these conventions:
+
+image:layout.png[]
+
+Often times, the the hitches on the extreme ends of the car are fixed in the upright position permanently.
+
+
+[NOTE]
+The ORTS Manual for FreightAnim() offset says: "XOffset, YOffset, and ZOffset are the offsets of the shape with respect to its zero position, and are useful to place the shape precisely."  However, it appears that when compared to Blender orientation in this case, offset needs to be specified as `offset(left/right of track center ,Up/Down from track height ,Near/Far along track axis)` for proper positioning. In Blender, Z axis is normally referred to as UP/DOWN.
+
+
+Refer to the OpenRails documentation for advanced configuration options.
+
+
+== The Cars
+
+The following is the list of cars developed for this content collection.
+
+|===
+|Reporting Mark	| Type				| Hitch Arrangement | Notes
+
+|RTTX 154729		|Triple 28/Twin 45 	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | No "trailer train" decal, Yellow Speed letter TTX, 3 x28 pup trailers
+|RTTX 152074		|Triple 28/Twin 45	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | No "trailer train" decal, Yellow peed letter TTX, 2 x45
+|KTTX 153079		|Twin 45			| #1 Orange Fixed, #5 Orange fixed Flip | Trailer Train Decal with centrally located "TT", 2 x 45
+|RTTX 154321		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, Yellow Speed letter TTX, 3x28
+|RTTX 151280		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, Yellow Speed letter TTX, No trailers
+|RTTX 150643		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, White Speed letter TTX, 1x45 at B-end.
+|XTTX 150247		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Black	| 4 hitches down, Max 3 deployed, Trailer Train Decal with centrally located "TT", No trailers, tire risers
+
+|===
+
+=== Trailers
+
+The following is the list of trailers developed (so far)  for this content collection.
+
+|===
+|Reporting Mark	| Type				| Livery 			| Notes
+
+| upsz29002		| 26'6" Pup Trailer | Early UPS 		| Rounded front end of trailer
+| upsz29101		| 28' Pup Trailer	| 1980's UPS 		| Angled front end of trailer
+| upsz294099    | 28' Low Deck Pup Trailer | Simple UPS | Lower Deck style with strip brush -- 'hula skirts'
+| upsz244109	| 28' Pup Trailer	| Modern UPS logo 	| with strip brush -- 'hula skirts'
+| upsz344456	| 28' Pup Trailer	| Modern UPS Logo  	| with strip brush -- 'hula skirts'
+
+|===
+
+
+
+[NOTE]
+These above are the pre-configured content items that each reside in their own folder.  This means that no special steps are needed if you want to install just one of the items.  They are self-contained.  If you install all of the items though, this will create some duplication of files.  Consolidating the cars into a single folder is possible, but that is left up to you.
+
+
+== Customization
+
+This content was created with customization in mind.  You can create any combination of trailers and hitches you desire.  Loading a particular livery trailer is as simple as specifying a particular shape file using the guidelines in this documentation.  A few examples have been included, some older ones without 3M stripes and older logos and some with stripes and more modern logos.  Customizing new liveries should also be pretty standard provided normal re-skinning methods are followed.
+
+Users may customize the model by:
+
+* Editing textures
+* Creating alternative liveries
+* Modifying configuration files to select the preferred FreightAnim shape
+
+Recommended tools include:
+
+* Blender
+* Affinity Studio 
+* ImageMagick
+* OpenRails shape view tools (TSRE ShapeViewer preferred)
+
+=== Supplemental Files
+
+For content creators that want some extra content, a github repository has been created to retrieve files that can be modified and shared.  These include:
+
+* Affinity Studio Texture files
+* PNG Files
+* Blender Source files
+* Scripts used while working on content
+
+
+Link: https://github.com/pwillard/F89F-Additional-Content
+
+* The model uses wheel sets developed by Erick Cantu that were converted to Blender.
+* Fonts/Lettering are from Railsimstuff.com
+* Reference material comes from hobby magazines,  google searches and rrpicturearchives.net
+* Affinity Studio is now free to use and is highly recommended.  The layered masters are available in this format.
+
+
+[TIP]
+Always keep backup copies before making modifications.
+
+The sources are available separately for the Affinity Studio layered master files for the textures as well as the PNG files used.  The lettering on the flat car is not baked into the background image, but rather its located in separate texture with a transparent background eliminating the need to mess with embedded lettering as you normally would when re-skinning.  Changing reporting marks, for example,  would need nothing more than using PAINT.NET or GIMP in a very quick session of minimal rework of the DDS file.
+
+For more detailed or comprehensive updates, you could utilize the Affinity masters, if you are comfortable with that tool.
+
+
+== License
+
+This model and associated files are released under the following license:
+
+Creative Commons Attribution–NonCommercial–ShareAlike (CC BY-NC-SA).
+
+You are free to:
+
+* Share — copy and redistribute the material
+* Adapt — remix and build upon the material
+
+Under the following conditions:
+
+* Attribution must be given to the author
+* Non-commercial use only
+* Derivative works must use the same license
+
+== Copyright
+
+Copyright (C) 2026  
+Pete Willard  
+Railsimstuff.com
+Email: petewillard@gmail.com
+
+Content, textures, models, and documentation are the intellectual property of the author unless otherwise noted.
+
+<<<
+
+== Revision History
+
+[cols="1,2,3"]
+|===
+|Version |Date |Notes
+
+|0.1
+|Mar 2026
+|Initial documentation layout
+|0.2
+|Mar 2026
+|Added details about configuration and setup
+|0.3
+|Mar 2026
+|Updated configuration details
+|===
