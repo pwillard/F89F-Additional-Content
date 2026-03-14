@@ -21,8 +21,10 @@ Version {revnumber} — {revdate}
 
 == Introduction
 
-This document describes the installation, use, and customization of the
-OpenRails 3D model content included in this package.
+This document describes the installation, use, and customization of the _OpenRails_ 3D model content included in this package.
+
+[WARNING]
+This content is not intended for use with Microsoft Train Simulator.
 
 The goal of this documentation is to provide clear instructions for:
 
@@ -39,14 +41,18 @@ Many of the RTTX cars began life as tri-level open autoracks cars that were conv
 
 The original flatcar has 5 possible hitch locations that can be raised or lowered as needed to load up to 3 28' trailers or 2 45' trailers.  With the RTTX series, the end cars were oriented so the hitch end faced outward, essentially flipping the trailer on the brake-end of the car.  The original XTTX cars actually had 4 hitches installed and also had tire risers to ensure that no part of the trailers would encounter the hitches as they were rolled on the car.  These cars contained the ramp plates to make roll-on loading possible.  The majority of the RTTX cars would have 3 hitches while the KTTX car series, the "twin 45" would only have the hitches installed at the extreme ends of the car.  Some versions the RTTX cars would have the 45' trailers facing the same direction with a hitch near the center of the car, but this layout seems rare.
 
+==== Freight Loads - UPS Trailers
+
+The freight included with the flexible load options are based on United Parcel Service intermodal equipment.  The sources for the liveries are available so customization of liveries is possible.  In fact, if the source shapes are used, you could release additional FreightAnim() trailers as standalone files.
+
 The arrangement of the trailers and hitches is detailed in a section below. 
 
-A version of the XTTX car is included in this collection with all for hitches installed, but in a stowed state of anyone wanting to see the original 28' pup trailer/ 45' trailer arrangement.  With the 4 Hitch setup, all trailers faced the same direction.  
+A version of the XTTX car is included in this collection with all for hitches installed, but in a stowed state for anyone wanting to see the original 28' pup trailer/ 45' trailer arrangement.  With the 4 Hitch setup, all trailers faced the same direction.  
 
 [NOTE] 
 This collection of content is not necessarily considered to be "plug-and-play".  It has been designed to give the user extreme flexibility.  While it could have been made even more flexible, at some point you have to stop and say "enough" and this got us to where we are now.
 
-image::RTTXdeck.jpg[]
+image:RTTXdeck.jpg[]
 
 == Installation
 
@@ -72,6 +78,11 @@ TRAINSET/
 
         
 ----
+
+The WAG files supplied with this content colection are doing all of the work related to what happens above the deck of each flat car.  The WAG files themselves are reasonably simplistic other than the FreightAnim() section.  There is certain room for improvement on the physics and no adjustments have been made for dynamic load effects based on freight.
+
+[TIP]
+Maybe someone with better physics expertise can chime in with some recommendations.
 
 == Using the Models
 
@@ -205,20 +216,39 @@ The following is the list of trailers developed (so far)  for this content colle
 
 * Pup trailers
 
+[cols="a,a", frame=none, grid=none]
+|===
+|image::UPSZ293887-render.png[]
+| image::upsz292737-render.png[]
+|===
+
+[cols="a,a", frame=none, grid=none]
+|===
+|image::upsz29101-render.png[]
+|image::upsz244109-render.png[]
+|===
+
+ 
+
 |===
 |Reporting Mark	| Type				| Livery 			| Notes
 
 | UPSZ29002		| 26'6" Pup Trailer | Early Ups 		| Rounded Front End Of Trailer, Ht. 12'6"
 | UPSZ29067		| 26'6" Pup Trailer | Early Ups			| Rounded Front End Of Trailer, Ht 12'6"
 | UPSZ29101		| 26'6" Pup Trailer	| Early Ups			| Rounded Front End Of Trailer, Ht. 12'6"
-| UPSZ294099    | 28' Low Deck Pup Trailer | Simple Ups | Lower Deck Style With Strip Brush -- 'Hula Skirts'
-| UPSZ292737    | 28' Low Deck Pup Trailer | Simple Ups | Lower Deck Style With Strip Brush -- 'Hula Skirts'
-| UPSZ293887    | 28' Low Deck Pup Trailer | Simple Ups | Lower Deck Style With Strip Brush -- 'Hula Skirts'
-| UPSZ244109	| 28' Pup Trailer	| Modern Ups Logo 	| With Strip Brush -- 'Hula Skirts'
-| UPSZ344456	| 28' Pup Trailer	| Modern Ups Logo  	| With Strip Brush -- 'Hula Skirts'
+| UPSZ294099    | 28' Low Deck Pup Trailer | Simple Ups | Drop Bottom Style With Strip Brush -- 'Hula Skirts'
+| UPSZ292737    | 28' Low Deck Pup Trailer | Modern Ups | Drop Bottom Style With Strip Brush -- 'Hula Skirts'
+| UPSZ293887    | 28' Low Deck Pup Trailer | Simple Ups | Drop Bottom Style With Strip Brush -- 'Hula Skirts'
+| UPSZ244109 	| 28' Pup Trailer	| Modern Ups Logo 	| With Strip Brush -- 'Hula Skirts'
+| UPSZ344456 	| 28' Pup Trailer	| Modern Ups Logo  	| With Strip Brush -- 'Hula Skirts'
 | UPSZ338977    | 28' Pup Trailer   | Modern Ups Logo   | With Strip Brush -- 'Hula Skirts'
 
 |===
+
+
+
+[NOTE]
+Regarding Drop Bottom Trailers,  these trailers, which have a lower floor to accommodate more cargo, are less common now. Their usage has declined, but they have not been completely phased out.
 
 * 45' Trailers
 
@@ -226,14 +256,16 @@ The following is the list of trailers developed (so far)  for this content colle
 |Reporting Mark	| Type				| Livery 			| Notes
 
 | UPSZ845115    | 45' Trailer 	| Early Ups 		    | Rounded Front End Of Trailer
-| UPSZ845624	| 45' Trailer 	| Early Ups				| Rounded Front End Of Trailer
-| UPSZ847170	| 45' Trailer	| Early Ups				| Rounded Front End Of Trailer
-| UPSZ845427	| 45' Trailer	| Modern Ups Logo 		| With Strip Brush -- 'Hula Skirts'
-| UPSZ847233	| 45' Trailer	| Modern Ups Logo  		| With Strip Brush -- 'Hula Skirts'
+| UPSZ845624 	| 45' Trailer 	| Early Ups				| Rounded Front End Of Trailer
+| UPSZ847170 	| 45' Trailer	| Early Ups				| Rounded Front End Of Trailer
+| UPSZ845427 	| 45' Trailer	| No UPS Logo 			| With Strip Brush -- 'Hula Skirts'
+| UPSZ847233 	| 45' Trailer	| Modern Ups Logo  		| With Strip Brush -- 'Hula Skirts'
 | UPSZ846809    | 45' Trailer   | Modern Ups Logo   	| With Strip Brush -- 'Hula Skirts'
 
 |===
 
+
+Overall, there are baically 2 eras supported with the content here.  One is 1960s through the 1970s and the other is 1980's through to 2005 or so.
 
 [NOTE]
 These above are the pre-configured content items that each reside in their own folder.  This means that no special steps are needed if you want to install just one of the items.  They are self-contained.  If you install all of the items though, this will create some duplication of files.  Consolidating the cars into a single folder is possible, but that is left up to you.
@@ -243,7 +275,7 @@ These above are the pre-configured content items that each reside in their own f
 
 This content was created with customization in mind.  You can create any combination of trailers and hitches you desire.  Loading a particular livery trailer is as simple as specifying a particular shape file using the guidelines in this documentation.  A few examples have been included, some older ones without 3M stripes and older logos and some with stripes and more modern logos.  Customizing new liveries should also be pretty standard provided normal re-skinning methods are followed.
 
-Users may customize the model by:
+Users may additionally customize the models by:
 
 * Editing textures
 * Creating alternative liveries
