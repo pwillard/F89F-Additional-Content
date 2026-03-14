@@ -108,49 +108,63 @@ Here is an example of how this is accomplished (for 3 pup trailers).
 [source,text]
 ----
 
-Comment(Trailers are offset by 0.05 to line up with hitch point)
-
+Comment(=============================================)
 	ORTSFreightAnims(
-
 		WagonEmptyWeight(36.7t-us)
-		Comment(Hitch #5)
-		Comment(Furthest from brake end) 
-		FreightAnimStatic (
-			Flip(1)
-			Shape(hitch-deployed-yello.s)
-			Offset(0.0 1.045 12.5)
-		)
+
+		Comment(A-END if car)
+		Comment(hitches for both 45' and 28' trailers)
+
+		Comment(=====================================)
+		Comment( Hitch #1 : 12.65 -- must use flip   ) 
+		Comment(=====================================)
+
+		Comment(=====================================)
+		Comment( Hitch #2 : 5.65)
+		Comment(=====================================)
+
+		Comment(=====================================)
+		Comment( Hitch #3 : 1.20)
+		Comment(=====================================)
 
 		FreightAnimStatic (
-			Flip(1)
-			Shape(Upsz29002.S)
-			Offset(0.0 1.045 12.45)
-			FreightWeight(3.0t)
+			Shape(hitch-DEPLOYED-brown.s)
+			Offset(0.0 1.045 1.2)
+		)
+		Comment(Trailer is offset 0.2m from hitch position)
+		FreightAnimStatic (
+			Shape(upsz845624.s)
+			Offset(0.0 1.045 1.0)
+			FreightWeight(3.1t)
 		)
 
-		Comment(Hitch #4)
+		Comment(=====================================)
+		Comment( Hitch #4 : -3.20)
+		Comment(=====================================)
+
 		FreightAnimStatic (
-			Shape(Hitch-Deployed-Black.S)
+			Shape(hitch-STOWED-brown.s)
 			Offset(0.0 1.045 -3.2)
 		)
-		Freightanimstatic (
-			Shape(Upsz29110.S)
-			Offset(0.0 1.045 -3.15)
-			FreightWeight(3.0t)
-		)
 
-		Comment(Hitch #1)
+		Comment(=====================================)
+		Comment( Hitch #5 : -12.65)
+		Comment(=====================================)
+
+		Comment(B-END if car)
 		FreightAnimStatic (
-			Shape(Hitch-Deployed-Yello.S)
-			Offset(0.0 1.045 -12.5)
-		)
-		Freightanimstatic (
-			Shape(Upsz294099.S)
-			Offset(0.0 1.045 -12.45)
-			FreightWeight(3.0t)
+			Shape(hitch-deployed-brown.s)
+			Offset(0.0 1.045 -12.65)					
 		)
 
+		Comment(Trailer is offset 0.2m from hitch position)
+		FreightAnimStatic (
+			Shape(upsz845115.s)
+			Offset(0.0 1.05 -12.85)
+			FreightWeight(3.1t)
+		)
 	)
+Comment(=============================================)
 
 ----
 
@@ -167,11 +181,11 @@ Y axis is UP
 |===
 |Location 	|Hitch 	|Trailer	|Trailer 	|X |Y 	|Z 			| Note
 
-|A-END      |1      |45'        |28'        |0 |1.045 |12.5		|
-|    		|2 		|    		|28' 		|0 |1.045 |5.58		| XTTX Only
-| 			|3 		|45'		|28' 		|0 |1.045 |1.0		| XTTX Only
+|B-END      |1      |45'        |28'        |0 |1.045 |12.65		|
+|    		|2 		|    		|28' 		|0 |1.045 |5.65		| XTTX Only
+| 			|3 		|45'		|28' 		|0 |1.045 |1.2		| XTTX Only
 | 			|4 		|    		| 			|0 |1.045 |-3.2  	|
-|B-END 		|5 		|45' 		|28' 		|0 |1.045 |-12.5	| Flip
+|A-END 		|5 		|45' 		|28' 		|0 |1.045 |-12.65	| Flip
 |===
 
 
@@ -197,7 +211,7 @@ Refer to the OpenRails documentation for advanced configuration options.
 The following is the list of cars developed for this content collection.
 
 |===
-|Reporting Mark	| Type				| Hitch Arrangement | Notes
+|Reporting Mark		| Type				| Hitch Arrangement | Notes
 
 |RTTX 154729		|Triple 28/Twin 45 	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | No "trailer train" decal, Yellow Speed letter TTX, 3 x28 pup trailers
 |RTTX 152074		|Triple 28/Twin 45	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | No "trailer train" decal, Yellow peed letter TTX, 2 x45
@@ -205,8 +219,10 @@ The following is the list of cars developed for this content collection.
 |RTTX 154321		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, Yellow Speed letter TTX, 3x28
 |RTTX 151280		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, Yellow Speed letter TTX, No trailers
 |RTTX 150643		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, White Speed letter TTX, 1x45 at B-end.
+|RTTX 150172		|Triple 28/Twin 45  | #1 Brown Fixed, #3 Brown, #5 Brown Flip |Legacy Paint Trailer Train decal, Dual 45 load
 |XTTX 150247		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Black	| 4 hitches down, Max 3 deployed, Trailer Train Decal with centrally located "TT", No trailers, tire risers
-|XTTX 150246		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Orange  | 4 hitches, 3 early 26' trailers, Trailer Train Decal with centrally located "TT", tire risers  
+|XTTX 150246		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Orange  | 4 hitches, 3 early 26' trailers, Trailer Train Decal with centrally located "TT", tire risers 
+|WTTX 914116		| Twin 45			| #2 Brown, #5 Brown | Central "TT" with "Trailer Train", both face same direction, dropped handbrake.
 
 |===
 
