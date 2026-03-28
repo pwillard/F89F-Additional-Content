@@ -35,11 +35,11 @@ The goal of this documentation is to provide clear instructions for:
 
 === Background
 
-This is a model of the Bethlehem F89F 89'4" flatcar.  The inspiration for this content was taken from an article in Mainline Modeler Magazine from April 1995.  While the model does not fully follow the example provided for the XTTX Trailer Train variant (which is based on a rebuild of a flatcar series formerly used for Autorack service), it is attempting to match more closely with the follow-up RTTX series of cas that were later marked as "Triple 28/Twin 45" service, which apparently used the flatcar in the article inspiration for the variable hitch arrangement that could support both 28' and 45' trailers.
+This is a model of the Bethlehem F89F 89'4" channel side flatcar.  The inspiration for this content was taken from an article in Mainline Modeler Magazine from April 1995.  While the model does not fully follow the example provided for the XTTX Trailer Train variant (which is based on a rebuild of a flatcar series formerly used for Auto rack service), it is attempting to match more closely with the follow-up RTTX series of cars that were later marked as "Triple 28/Twin 45" service, which apparently used the earlier flatcar referred to in the article as inspiration for the variable hitch arrangement that could support both 28' and 45' trailers. The XTTX version is the only 4 hitch variant as it was quickly determined that having 4 hitches was not practical.
 
-Many of the RTTX cars began life as tri-level open autoracks cars that were converted to Flatcar TOFC service.  The base model is a the Bethlehem 89'4" channel-side flatcar.
+Many of the RTTX cars began life as tri-level open autoracks cars that were converted to flatcar TOFC service.  The base model here is a the Bethlehem 89'4" channel-side flatcar.  There are other 89' flatcars used for TOFC service that employed the flush deck variant of the car.
 
-The original flatcar has 5 possible hitch locations that can be raised or lowered as needed to load up to 3 28' trailers or 2 45' trailers.  With the RTTX series, the end cars were oriented so the hitch end faced outward, essentially flipping the trailer on the brake-end of the car.  The original XTTX cars actually had 4 hitches installed and also had tire risers to ensure that no part of the trailers would encounter the hitches as they were rolled on the car.  These cars contained the ramp plates to make roll-on loading possible.  The majority of the RTTX cars would have 3 hitches while the KTTX car series, the "twin 45" would only have the hitches installed at the extreme ends of the car.  Some versions the RTTX cars would have the 45' trailers facing the same direction with a hitch near the center of the car, but this layout seems rare.
+The flatcar depicted here has 5 possible hitch locations that can be raised or lowered as needed to load up to 3 28' trailers or 2 45' trailers.  With the RTTX series, the hitches were oriented so the hitches att he extreme ends of the car were closest to the A and B end, essentially flipping the orientation of the trailer on the brake-end of the car.  The original XTTX cars actually had 4 hitches installed and also had tire risers to ensure that no part of the trailers would encounter the hitches as they were rolled on the car.  These cars contained the ramp plates to make roll-on loading possible.  The majority of the RTTX cars would have 3 hitches while the KTTX car series, the "twin 45" would only have the hitches installed at the extreme ends of the car.  Some versions the RTTX cars would have the 45' trailers facing the same direction with a hitch near the center of the car, but this layout seems more rare.
 
 ==== Freight Loads - UPS Trailers
 
@@ -47,7 +47,7 @@ The freight included with the flexible load options are based on United Parcel S
 
 The arrangement of the trailers and hitches is detailed in a section below. 
 
-A version of the XTTX car is included in this collection with all for hitches installed, but in a stowed state for anyone wanting to see the original 28' pup trailer/ 45' trailer arrangement.  With the 4 Hitch setup, all trailers faced the same direction.  
+A version of the XTTX car is included in this collection with all four hitches installed, but in a stowed state for anyone wanting to see the original 28' pup trailer/ 45' trailer arrangement.  With the 4 Hitch setup, all trailers faced the same direction.  
 
 [NOTE] 
 This collection of content is not necessarily considered to be "plug-and-play".  It has been designed to give the user extreme flexibility.  While it could have been made even more flexible, at some point you have to stop and say "enough" and this got us to where we are now.
@@ -66,6 +66,9 @@ The cars are released as individual folders for each reporting mark so you can c
 
 Each Car and Trailer are individually named and use appropriately names texture files to go along with them.  With this distribution method, if you only wanted to install a single car, you would just install the appropriate folder to your `trainset` location.
 
+[NOTE]
+Just remember, you can install these files in a manner that saves space and file duplication, but that is left up to you.
+
 Example directory layout:
 
 ----
@@ -79,7 +82,7 @@ TRAINSET/
         
 ----
 
-The WAG files supplied with this content colection are doing all of the work related to what happens above the deck of each flat car.  The WAG files themselves are reasonably simplistic other than the FreightAnim() section.  There is certain room for improvement on the physics and no adjustments have been made for dynamic load effects based on freight.
+The WAG files supplied with this content collection are doing all of the work related to what happens above the deck of each flat car.  The WAG files themselves are reasonably simplistic other than the FreightAnim() section.  There is certain room for improvement on the physics. Comments welcome.
 
 [TIP]
 Maybe someone with better physics expertise can chime in with some recommendations.
@@ -94,14 +97,17 @@ Typical usage scenario:
 * Freight rolling stock, of course
 * Some of the trailer models contained can be used as Scenery Objects as well.
 
-[WARNING]
-The design of this content is built around the concept of flexibility. The flatcar itself has no hitches or trailers installed and must be added with FreightAnim statements.  
+[TIP]
+The design of this content is built around the concept of flexibility. The flatcar model itself has no hitches or trailers installed and must be added with FreightAnim statements.  
 
 === Freight Animations
 
 The WAG file configuration determines the hitch installation of raised or stowed configuration in a choice of 3 colors ( Yellow/Orange, Black or Brown ).  This is done by configuration settings in the FreightAnim() section of the WAG file.
 
-Additionally, the choice of trailer type and trailer owner/markings is completely configurable by calling a specific trailer S file as a FreightAnim shape.
+Additionally, the choice of trailer type and trailer owner/markings is completely configurable by calling a specific trailer `.S` file as a FreightAnim shape.
+
+[WARNING]
+The current Shape Viewer tools do not respect the _FreightAnim()_ setting of `flip(1)` to flip the orientation of the load by 180 on its Axis.  The axis points for the trailers supplied with this collection is on the kingpin so the location.  In ShapeViewer, some trailers will seem to have the wrong placement when `flip` is used.  It will look fine in OpenRails. 
 
 Here is an example of how this is accomplished (for 3 pup trailers).
 
@@ -110,14 +116,25 @@ Here is an example of how this is accomplished (for 3 pup trailers).
 
 Comment(=============================================)
 	ORTSFreightAnims(
+		Comment(Trailers are offset by 0.2)
 		WagonEmptyWeight(36.7t-us)
-
-		Comment(A-END if car)
-		Comment(hitches for both 45' and 28' trailers)
-
+		
 		Comment(=====================================)
 		Comment( Hitch #1 : 12.65 -- must use flip   ) 
 		Comment(=====================================)
+
+		FreightAnimStatic (
+			Flip(1)
+			Shape(hitch-deployed-yello.s)
+			Offset(0.0 1.045 12.0)
+		)
+
+		FreightAnimStatic (
+			Flip(1)
+			shape(upsz29002.s)
+			offset(0.0 1.045 12.2)
+			FreightWeight(3.1t)
+		)
 
 		Comment(=====================================)
 		Comment( Hitch #2 : 5.65)
@@ -126,43 +143,37 @@ Comment(=============================================)
 		Comment(=====================================)
 		Comment( Hitch #3 : 1.20)
 		Comment(=====================================)
-
-		FreightAnimStatic (
-			Shape(hitch-DEPLOYED-brown.s)
-			Offset(0.0 1.045 1.2)
-		)
-		Comment(Trailer is offset 0.2m from hitch position)
-		FreightAnimStatic (
-			Shape(upsz845624.s)
-			Offset(0.0 1.045 1.0)
-			FreightWeight(3.1t)
-		)
+		
 
 		Comment(=====================================)
 		Comment( Hitch #4 : -3.20)
 		Comment(=====================================)
 
 		FreightAnimStatic (
-			Shape(hitch-STOWED-brown.s)
+			Shape(hitch-DEPLOYED-black.s)
 			Offset(0.0 1.045 -3.2)
 		)
-
-		Comment(=====================================)
-		Comment( Hitch #5 : -12.65)
-		Comment(=====================================)
-
-		Comment(B-END if car)
 		FreightAnimStatic (
-			Shape(hitch-deployed-brown.s)
-			Offset(0.0 1.045 -12.65)					
-		)
-
-		Comment(Trailer is offset 0.2m from hitch position)
-		FreightAnimStatic (
-			Shape(upsz845115.s)
-			Offset(0.0 1.05 -12.85)
+			shape(upsz29110.s)
+			offset(0.0 1.045 -3.4)
 			FreightWeight(3.1t)
 		)
+
+		Comment(=====================================)
+		Comment( Hitch #5 : -12.00)
+		Comment(=====================================)
+
+		Comment(B-END of car)
+		FreightAnimStatic (
+			Shape(hitch-deployed-yello.s)
+			Offset(0.0 1.045 -12.0)
+		)
+		FreightAnimStatic (
+			shape(upsz294099.s)
+			offset(0.0 1.045 -12.2)
+			FreightWeight(3.1t)
+		)
+
 	)
 Comment(=============================================)
 
@@ -181,16 +192,17 @@ Y axis is UP
 |===
 |Location 	|Hitch 	|Trailer	|Trailer 	|X |Y 	|Z 			| Note
 
-|B-END      |1      |45'        |28'        |0 |1.045 |12.65		|
+|B-END      |1      |45'        |28'        |0 |1.045 |12.0 	|
 |    		|2 		|    		|28' 		|0 |1.045 |5.65		| XTTX Only
 | 			|3 		|45'		|28' 		|0 |1.045 |1.2		| XTTX Only
 | 			|4 		|    		| 			|0 |1.045 |-3.2  	|
-|A-END 		|5 		|45' 		|28' 		|0 |1.045 |-12.65	| Flip
+|A-END 		|5 		|45' 		|28' 		|0 |1.045 |-12.00	| Flip
 |===
 
 
 
-Trailers should be added to the same offset location as the related hitch, adjusted by 0.05. Example: Trailer `Offset(0.0 1.045 -12.45)` 
+[TIP]
+Trailers should be added to the same offset location as the related hitch, adjusted by approx 0.2m. or about 8". Example: Trailer `Offset(0.0 1.045 -12.2)` 
 
 The Layout of the Trailers seems to follow these conventions:
 
@@ -213,7 +225,7 @@ The following is the list of cars developed for this content collection.
 |===
 |Reporting Mark		| Type				| Hitch Arrangement | Notes
 
-|RTTX 154729		|Triple 28/Twin 45 	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | No "trailer train" decal, Yellow Speed letter TTX, 3 x28 pup trailers
+|RTTX 154729		|Triple 28/Twin 45 	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | Both "TT" and "trailer train" decal, 3 x28 pup trailers
 |RTTX 152074		|Triple 28/Twin 45	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | No "trailer train" decal, Yellow peed letter TTX, 2 x45
 |KTTX 153079		|Twin 45			| #1 Orange Fixed, #5 Orange fixed Flip | Trailer Train Decal with centrally located "TT", 2 x 45
 |RTTX 154321		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, Yellow Speed letter TTX, 3x28
@@ -225,6 +237,8 @@ The following is the list of cars developed for this content collection.
 |WTTX 914116		| Twin 45			| #2 Brown, #5 Brown | Central "TT" with "Trailer Train", both face same direction, dropped handbrake.
 
 |===
+
+The DECAL layer for each car is based on a callout to a decal specific `.S` file and not incorporated into the main texture.
 
 === Trailers
 
@@ -281,7 +295,7 @@ Regarding Drop Bottom Trailers,  these trailers, which have a lower floor to acc
 |===
 
 
-Overall, there are baically 2 eras supported with the content here.  One is 1960s through the 1970s and the other is 1980's through to 2005 or so.
+Overall, there are basically 2 eras supported with the content here.  One is 1960s through the 1970s and the other is 1980's through to 2005 or so.
 
 [NOTE]
 These above are the pre-configured content items that each reside in their own folder.  This means that no special steps are needed if you want to install just one of the items.  They are self-contained.  If you install all of the items though, this will create some duplication of files.  Consolidating the cars into a single folder is possible, but that is left up to you.
@@ -296,6 +310,7 @@ Users may additionally customize the models by:
 * Editing textures
 * Creating alternative liveries
 * Modifying configuration files to select the preferred FreightAnim shape
+* Creating new trailer types (the UPS 45' drop bottom trailer has not been modeled, for example)
 
 Recommended tools include:
 
@@ -303,6 +318,7 @@ Recommended tools include:
 * Affinity Studio 
 * ImageMagick
 * OpenRails shape view tools (TSRE ShapeViewer preferred)
+* A PNG2DDS conversion script has been included with this repository
 
 === Supplemental Files
 
