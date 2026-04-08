@@ -1,7 +1,7 @@
 
 = F89F Flatcar
 Pete Willard
-:revnumber: 0.1
+:revnumber: 0.4
 :revdate: 2026
 :doctype: book
 :toc: left
@@ -17,6 +17,8 @@ Pete Willard
 [.text-center]
 Version {revnumber} — {revdate}
 
+BETA RELEASE
+
 <<<
 
 == Introduction
@@ -24,10 +26,11 @@ Version {revnumber} — {revdate}
 This document describes the installation, use, and customization of the _OpenRails_ 3D model content included in this package.
 
 [WARNING]
-This content is not intended for use with Microsoft Train Simulator.
+This content is for OpenRails and not intended for use with Microsoft Train Simulator.
 
 The goal of this documentation is to provide clear instructions for:
 
+* Background Information
 * Installing the content
 * Using the models in OpenRails
 * Customizing textures or configurations
@@ -35,24 +38,17 @@ The goal of this documentation is to provide clear instructions for:
 
 === Background
 
-This is a model of the Bethlehem F89F 89'4" channel side flatcar.  The inspiration for this content was taken from an article in Mainline Modeler Magazine from April 1995.  While the model does not fully follow the example provided for the XTTX Trailer Train variant (which is based on a rebuild of a flatcar series formerly used for Auto rack service), it is attempting to match more closely with the follow-up RTTX series of cars that were later marked as "Triple 28/Twin 45" service, which apparently used the earlier flatcar referred to in the article as inspiration for the variable hitch arrangement that could support both 28' and 45' trailers. The XTTX version is the only 4 hitch variant as it was quickly determined that having 4 hitches was not practical.
+This is a model of the Bethlehem F89F 89'4" channel side flatcar.  The inspiration for this content was taken from an article in Mainline Modeler Magazine from April 1995.  While the model generally does not fully follow the example provided for the XTTX Trailer Train variant (which is based on a rebuild of a flatcar series formerly used for Auto rack service), it is attempting to match more closely with the follow-up RTTX series of cars that were later marked as "Triple 28/Twin 45" service, which apparently used the earlier flatcar referred to in the article as inspiration for the variable hitch arrangement that could support both 28' and 45' trailers. The XTTX version is the only 4 hitch variant as it was quickly determined that having 4 hitches was not practical.
 
 Many of the RTTX cars began life as tri-level open autoracks cars that were converted to flatcar TOFC service.  The base model here is a the Bethlehem 89'4" channel-side flatcar.  There are other 89' flatcars used for TOFC service that employed the flush deck variant of the car.
 
+[WARNING]
+This document also serves as the reference information for the flatcar development kit available separately for those who want access to the texture and model sources.  If you only intend to use this collection in consists there are some sections of this document that can be skipped over.
+
+==== Flexible Loading
+
 The flatcar depicted here has 5 possible hitch locations that can be raised or lowered as needed to load up to 3 28' trailers or 2 45' trailers.  With the RTTX series, the hitches were oriented so the hitches att he extreme ends of the car were closest to the A and B end, essentially flipping the orientation of the trailer on the brake-end of the car.  The original XTTX cars actually had 4 hitches installed and also had tire risers to ensure that no part of the trailers would encounter the hitches as they were rolled on the car.  These cars contained the ramp plates to make roll-on loading possible.  The majority of the RTTX cars would have 3 hitches while the KTTX car series, the "twin 45" would only have the hitches installed at the extreme ends of the car.  Some versions the RTTX cars would have the 45' trailers facing the same direction with a hitch near the center of the car, but this layout seems more rare.
 
-==== Freight Loads - UPS Trailers
-
-The freight included with the flexible load options are based on United Parcel Service intermodal equipment.  The sources for the liveries are available so customization of liveries is possible.  In fact, if the source shapes are used, you could release additional FreightAnim() trailers as standalone files.
-
-The arrangement of the trailers and hitches is detailed in a section below. 
-
-A version of the XTTX car is included in this collection with all four hitches installed, but in a stowed state for anyone wanting to see the original 28' pup trailer/ 45' trailer arrangement.  With the 4 Hitch setup, all trailers faced the same direction.  
-
-[NOTE] 
-This collection of content is not necessarily considered to be "plug-and-play".  It has been designed to give the user extreme flexibility.  While it could have been made even more flexible, at some point you have to stop and say "enough" and this got us to where we are now.
-
-image:RTTXdeck.jpg[]
 
 == Installation
 
@@ -62,61 +58,88 @@ To install the model content:
 . Copy the provided files into the appropriate OpenRails directories
 . Ensure texture and shape files remain in their original structure
 
-The cars are released as individual folders for each reporting mark so you can control which variants to install.  This does create some duplication of items and you could logically consolidate into a single folder if you wished to do so.
+The available cars are released in a single folder but you control which variants to install using a consist editor or file.  Customization is as easy as editing the WAG file and referencing different available shapes and related textures.
 
-Each Car and Trailer are individually named and use appropriately names texture files to go along with them.  With this distribution method, if you only wanted to install a single car, you would just install the appropriate folder to your `trainset` location.
-
-[NOTE]
-Just remember, you can install these files in a manner that saves space and file duplication, but that is left up to you.
+Each Car and Trailer are individually named inside a WAG file and use appropriately names texture files to go along with them.  
 
 Example directory layout:
 
 ----
 TRAINSET/
     Specific Decaled Model/
-        Flatcar Model S files
-        FreightAnim Model S files
-        DDS texture files for flatcar and FreightAnim Hitches and Trailers
-        WAG file, with custom freight anim entries
+        Flatcar Body  Model S files
+		Flatcar Decal FreightAnim Model S files
+        Hitch Model FreightAnim Model S files
+		Trailer Model FreightAnim Model S files
+        DDS texture files for flatcar (body and decal) and FreightAnim Hitches and Trailers
+        WAG file, with custom freight anim entries to make it all work
 
         
 ----
 
-The WAG files supplied with this content collection are doing all of the work related to what happens above the deck of each flat car.  The WAG files themselves are reasonably simplistic other than the FreightAnim() section.  There is certain room for improvement on the physics. Comments welcome.
+The WAG files supplied with this content collection are doing all of the work related to what happens with and above the deck of each flat car.  The WAG files themselves are reasonably simplistic other than the FreightAnim() section.  There is certain room for improvement on the physics. Comments welcome.
 
 [TIP]
 Maybe someone with better physics expertise can chime in with some recommendations.
 
+
 == Using the Models
 
-After installation, the model should appear inside OpenRails when the
-associated consist or rolling stock entry is loaded.
+After installation, the model should appear inside OpenRails when the associated consist or rolling stock entry is created and loaded.
 
 Typical usage scenario:
 
-* Freight rolling stock, of course
+* Customizable Freight rolling stock, of course
+* Dynamic loading and unloading of trailers, left up to the user.
 * Some of the trailer models contained can be used as Scenery Objects as well.
+
+The models will show up in Shapeviewer and Consist editors, with many different items available, but to be useful, the WAG file must be referenced.
 
 [TIP]
 The design of this content is built around the concept of flexibility. The flatcar model itself has no hitches or trailers installed and must be added with FreightAnim statements.  
 
+There are no MT or LD editions of the cars as they remain flexible based on the "programming" in each individual WAG file.  You can certainly use each WAG file as-is, but you can also customize the loading of each  car as desired, or even rename the match MT and LD standardizations.
+
+[NOTE]
+These cars utilize NAVS Freight sounds, so you will need to make sure that set is installed as well.
+
+=== Freight Loads 
+
+The freight included with the flexible load options are based mostly on United Parcel Service inter-modal equipment.  The sources for the liveries are available so customization of liveries is also possible.  In fact, if the source shapes are used, you could release additional _FreightAnim()_ trailers as standalone files.  Not included, however, are any of the standard door 28' and 45' as the UPS models all use roll-up doors.
+
+The arrangement of the trailers and hitches is detailed in a section below. 
+
+[NOTE]
+A version of the original XTTX car is included in this collection with all four hitches installed, but in a stowed state for anyone wanting to see the original 28' pup trailer/ 45' trailer arrangement.  With the 4 Hitch setup, all trailers faced the same direction. 
+
+
+[WARNING] 
+This collection of content is not necessarily considered to be "plug-and-play".  It has been designed to give the user extreme flexibility.  While it could have been made even more flexible, at some point you have to stop and say "enough" and this gets us to where we are now.
+
+image:RTTXdeck.jpg[]
+
+
 === Freight Animations
 
-The WAG file configuration determines the hitch installation of raised or stowed configuration in a choice of 3 colors ( Yellow/Orange, Black or Brown ).  This is done by configuration settings in the FreightAnim() section of the WAG file.
+In addition to determining the body style and decal assignments, the `.wag` file configuration determines the hitch installation of raised or stowed configuration in a choice of 3 colors ( Orange, Black or Brown ).  This is done by specific configuration settings in the FreightAnim() section of the WAG file.  Differences in the `.DDS` files are related to the color *and* shadows of stowed versus deployed hitches.
 
-Additionally, the choice of trailer type and trailer owner/markings is completely configurable by calling a specific trailer `.S` file as a FreightAnim shape.
+Additionally, the choice of trailer type and trailer owner/markings is completely configurable by calling a specific trailer `.S` file as a loaded FreightAnim shape.
 
 [WARNING]
-The current Shape Viewer tools do not respect the _FreightAnim()_ setting of `flip(1)` to flip the orientation of the load by 180 on its Axis.  The axis points for the trailers supplied with this collection is on the kingpin so the location.  In ShapeViewer, some trailers will seem to have the wrong placement when `flip` is used.  It will look fine in OpenRails. 
+The current Shape Viewer tools do not respect the _FreightAnim()_ setting of `flip(1)` to flip the orientation of the load by 180 on its Axis.  Also note that ehe axis points for the trailers supplied with this collection is located on the kingpin.  In ShapeViewer, some trailers will seem to have the wrong placement when `flip` is used in the `.WAG` file  It will look fine in OpenRails. 
 
 Here is an example of how this is accomplished (for 3 pup trailers).
+
+[TIP]
+The placement of the hitches differs slightly between 28 amd 45 foot trailers, pay attention to the contents of existing WAG files for details.
 
 [source,text]
 ----
 
 Comment(=============================================)
 	ORTSFreightAnims(
-		Comment(Trailers are offset by 0.2)
+		Comment(28' Trailers are offset by 0.2)
+		Comment(45' Trailers are offset by 0.3)
 		WagonEmptyWeight(36.7t-us)
 		
 		Comment(=====================================)
@@ -126,13 +149,13 @@ Comment(=============================================)
 		FreightAnimStatic (
 			Flip(1)
 			Shape(hitch-deployed-yello.s)
-			Offset(0.0 1.045 12.0)
+			Offset(0.0 1.045 12.65)
 		)
 
 		FreightAnimStatic (
 			Flip(1)
 			shape(upsz29002.s)
-			offset(0.0 1.045 12.2)
+			offset(0.0 1.045 12.85)
 			FreightWeight(3.1t)
 		)
 
@@ -160,7 +183,7 @@ Comment(=============================================)
 		)
 
 		Comment(=====================================)
-		Comment( Hitch #5 : -12.00)
+		Comment( Hitch #5 : -12.65)
 		Comment(=====================================)
 
 		Comment(B-END of car)
@@ -170,7 +193,7 @@ Comment(=============================================)
 		)
 		FreightAnimStatic (
 			shape(upsz294099.s)
-			offset(0.0 1.045 -12.2)
+			offset(0.0 1.045 -12.85)
 			FreightWeight(3.1t)
 		)
 
@@ -179,11 +202,14 @@ Comment(=============================================)
 
 ----
 
+[CAUTION]
+Hopefully this makes sense.  If it doesn't, you could always try to get some assistance from the Trainsim.com Forums or the related Discord chat room.
+
 <<<
 
 ==== Hitch Locations
 
-The following are the most reasonable hitch locations:
+The following are the most reasonable hitch locations though they can be adjusted as needed:
 
 [NOTE]
 Y axis is UP
@@ -192,17 +218,16 @@ Y axis is UP
 |===
 |Location 	|Hitch 	|Trailer	|Trailer 	|X |Y 	|Z 			| Note
 
-|B-END      |1      |45'        |28'        |0 |1.045 |12.0 	|
+|B-END      |1      |45'        |28'        |0 |1.045 |12.65 	|
 |    		|2 		|    		|28' 		|0 |1.045 |5.65		| XTTX Only
 | 			|3 		|45'		|28' 		|0 |1.045 |1.2		| XTTX Only
 | 			|4 		|    		| 			|0 |1.045 |-3.2  	|
-|A-END 		|5 		|45' 		|28' 		|0 |1.045 |-12.00	| Flip
+|A-END 		|5 		|45' 		|28' 		|0 |1.045 |-12.65	| Flip - Not used in XTTX
 |===
 
 
-
 [TIP]
-Trailers should be added to the same offset location as the related hitch, adjusted by approx 0.2m. or about 8". Example: Trailer `Offset(0.0 1.045 -12.2)` 
+Trailers should be added to the same offset location as the related hitch, adjusted by approx 0.2m for 28' and 0.3m for 45'. Example: 45' Trailer `Offset(0.0 1.045 -12.95)`
 
 The Layout of the Trailers seems to follow these conventions:
 
@@ -211,11 +236,11 @@ image:layout.png[]
 Often times, the the hitches on the extreme ends of the car are fixed in the upright position permanently.
 
 
-[NOTE]
-The ORTS Manual for FreightAnim() offset says: "XOffset, YOffset, and ZOffset are the offsets of the shape with respect to its zero position, and are useful to place the shape precisely."  However, it appears that when compared to Blender orientation in this case, offset needs to be specified as `offset(left/right of track center ,Up/Down from track height ,Near/Far along track axis)` for proper positioning. In Blender, Z axis is normally referred to as UP/DOWN.
+[TIP]
+The ORTS Manual for FreightAnim() offset says: "XOffset, YOffset, and ZOffset are the offsets of the shape with respect to its zero position, and are useful to place the shape precisely."  However, it appears that when compared to Blender orientation in this case, offset needs to be specified as `offset(left/right of track center ,Up/Down from track height ,Near/Far along track axis)` for proper positioning. In Blender, Z axis is normally referred to as UP/DOWN so this can lead to some confusion if you are not careful.
 
 
-Refer to the OpenRails documentation for advanced configuration options.
+Refer to the OpenRails documentation for advanced configuration options related to FreightAnim() and its uses.
 
 
 == The Cars
@@ -225,20 +250,22 @@ The following is the list of cars developed for this content collection.
 |===
 |Reporting Mark		| Type				| Hitch Arrangement | Notes
 
-|RTTX 154729		|Triple 28/Twin 45 	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | Both "TT" and "trailer train" decal, 3 x28 pup trailers
-|RTTX 152074		|Triple 28/Twin 45	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | No "trailer train" decal, Yellow peed letter TTX, 2 x45
 |KTTX 153079		|Twin 45			| #1 Orange Fixed, #5 Orange fixed Flip | Trailer Train Decal with centrally located "TT", 2 x 45
-|RTTX 154321		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, Yellow Speed letter TTX, 3x28
-|RTTX 151280		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, Yellow Speed letter TTX, No trailers
-|RTTX 150643		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange FLip | No "trailer train" decal, White Speed letter TTX, 1x45 at B-end.
-|RTTX 150172		|Triple 28/Twin 45  | #1 Brown Fixed, #3 Brown, #5 Brown Flip |Legacy Paint Trailer Train decal, Dual 45 load
-|XTTX 150247		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Black	| 4 hitches down, Max 3 deployed, Trailer Train Decal with centrally located "TT", No trailers, tire risers
-|XTTX 150246		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Orange  | 4 hitches, 3 early 26' trailers, Trailer Train Decal with centrally located "TT", tire risers 
-|WTTX 914116		| Twin 45			| #2 Brown, #5 Brown | Central "TT" with "Trailer Train", both face same direction, dropped handbrake.
+|KTTX 930921		|Twin 45			| #1 Orange Fixed, #5 Orange fixed Flip | No Trailer Train or TT Decal with white Speed Letter "TTX", 2 x 45
+|RTTX 150330		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange fixed Flip | Trailer Train Decal with centrally located "TT", 2 x 45
+|RTTX 150643		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange Flip | No "trailer train" decal, White Speed letter TTX, 2x45
+|RTTX 151072		|Triple 28/Twin 45  | #1 Brown Fixed, #3 Brown, #5 Brown Flip |Legacy Paint Trailer Train decal, Dual 45 load
+|RTTX 151280		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange Flip | No "trailer train" decal, White Speed letter TTX, 2 x 45
+|RTTX 152074		|Triple 28/Twin 45	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | Blacked out "TT" decal, Yellow speed letter TTX, 2 x45
+|RTTX 154321		|Triple 28/Twin 45  | #1 Orange Fixed, #3 Black, #5 Orange Flip | Modern, No "trailer train" decal, Yellow Speed letter TTX, 3x28
+|RTTX 154729		|Triple 28/Twin 45 	| #1 Orange Fixed , #4 Black, #5 Orange Fixed Flip | Both "TT" and "Trailer Train" decal, 3 x28 pup trailers 
+|XTTX 150246		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Orange  | 4 hitches, 3 early 26' trailers, Trailer Train Decal with centrally located "TT", tire risers 45' trailers
+|XTTX 150247		| No marking		| #2 Orange, #3 Black, #4 Black, #5 Black	| 4 hitches down, Max 3 deployed, Trailer Train Decal with centrally located "TT", No trailers, tire 
 
 |===
 
-The DECAL layer for each car is based on a callout to a decal specific `.S` file and not incorporated into the main texture.
+[NOTE]
+The DECAL layer for each car is based on a callout to a decal specific `.S` file and not incorporated into the main texture of the flatcar body.
 
 === Trailers
 
@@ -263,15 +290,18 @@ The following is the list of trailers developed (so far)  for this content colle
 |===
 |Reporting Mark	| Type				| Livery 			| Notes
 
-| UPSZ29002		| 26'6" Pup Trailer | Early Ups 		| Rounded Front End Of Trailer, Ht. 12'6"
-| UPSZ29067		| 26'6" Pup Trailer | Early Ups			| Rounded Front End Of Trailer, Ht 12'6"
-| UPSZ29101		| 26'6" Pup Trailer	| Early Ups			| Rounded Front End Of Trailer, Ht. 12'6"
-| UPSZ294099    | 28' Low Deck Pup Trailer | Simple Ups | Drop Bottom Style With Strip Brush -- 'Hula Skirts'
-| UPSZ292737    | 28' Low Deck Pup Trailer | Modern Ups | Drop Bottom Style With Strip Brush -- 'Hula Skirts'
-| UPSZ293887    | 28' Low Deck Pup Trailer | Simple Ups | Drop Bottom Style With Strip Brush -- 'Hula Skirts'
-| UPSZ244109 	| 28' Pup Trailer	| Modern Ups Logo 	| With Strip Brush -- 'Hula Skirts'
-| UPSZ344456 	| 28' Pup Trailer	| Modern Ups Logo  	| With Strip Brush -- 'Hula Skirts'
-| UPSZ338977    | 28' Pup Trailer   | Modern Ups Logo   | With Strip Brush -- 'Hula Skirts'
+| UPSZ29002		| 26'6" PUP TRAILER | EARLY UPS 		| ROUNDED FRONT END OF TRAILER, HT. 12'6"
+| UPSZ29067		| 26'6" PUP TRAILER | EARLY UPS			| ROUNDED FRONT END OF TRAILER, HT 12'6"
+| UPSZ29101		| 26'6" PUP TRAILER	| EARLY UPS			| ROUNDED FRONT END OF TRAILER, HT. 12'6"
+| UPSZ294099    | 28' LOW DECK PUP TRAILER | SIMPLE UPS | DROP BOTTOM STYLE WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ292737    | 28' LOW DECK PUP TRAILER | MODERN UPS | DROP BOTTOM STYLE WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ293887    | 28' LOW DECK PUP TRAILER | SIMPLE UPS | DROP BOTTOM STYLE WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ244109 	| 28' PUP TRAILER	| MODERN UPS LOGO 	| WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ344456 	| 28' PUP TRAILER	| MODERN UPS LOGO  	| SPARE - WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ338977    | 28' PUP TRAILER   | MODERN UPS LOGO   | WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ850267	| 28' PUP TRAILER	| XTRA LEASE		| WITH STRIPES
+| YTZ521277		| 28' PUP TRAILER	| YELLOW TRUCKING	| NO STRIPES
+| UPSZ29110		| 28' PUP TRAILER	|					| 
 
 |===
 
@@ -285,32 +315,119 @@ Regarding Drop Bottom Trailers,  these trailers, which have a lower floor to acc
 |===
 |Reporting Mark	| Type				| Livery 			| Notes
 
-| UPSZ845115    | 45' Trailer 	| Early Ups 		    | Rounded Front End Of Trailer
-| UPSZ845624 	| 45' Trailer 	| Early Ups				| Rounded Front End Of Trailer
-| UPSZ847170 	| 45' Trailer	| Early Ups				| Rounded Front End Of Trailer
-| UPSZ845427 	| 45' Trailer	| No UPS Logo 			| With Strip Brush -- 'Hula Skirts'
-| UPSZ847233 	| 45' Trailer	| Modern Ups Logo  		| With Strip Brush -- 'Hula Skirts'
-| UPSZ846809    | 45' Trailer   | Modern Ups Logo   	| With Strip Brush -- 'Hula Skirts'
+| UPSZ845115    | 45' TRAILER 	| EARLY UPS 		    | ROUNDED FRONT END OF TRAILER
+| UPSZ845624 	| 45' TRAILER 	| EARLY UPS				| ROUNDED FRONT END OF TRAILER
+| UPSZ847170 	| 45' TRAILER	| EARLY UPS				| ROUNDED FRONT END OF TRAILER
+| UPSZ845427 	| 45' TRAILER	| NO UPS LOGO 			| SPARE - WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ847233 	| 45' TRAILER	| MODERN UPS LOGO  		| SPARE - WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ846809    | 45' TRAILER   | MODERN UPS LOGO   	| SPARE - WITH STRIP BRUSH -- 'HULA SKIRTS'
+| UPSZ854300	| 45' TRAILER   | UPS		|
+| UPSZ852048	| 45' TRAILER	| UPS		|
+| UPSZ847170	| 45' TRAILER	| UPS		|
+| UPSZ845624	| 45' TRAILER	| UPS		|
+| CRZ254100     | 45' TRAILER 	| CONRAIL LOGO 			| ROUNDED FRONT END OF TRAILER
+| CRZ654593		| 45' TRAILER   | CONRAIL - NO LOGO		| ROUNDED FRONT END OF TRAILER
+| CRZ293310     | 45' TRAILER   | CONRAIL LOGO          |
+| CRZ204022		| 45' TRAILER	| CONRAIL SPECIAL		| RAIL THEFT STING OPERATION
+| CFKZ631030	| 45' TRAILER   | XTRA LEASE			|
+| XTRZ231300	| 45' TRAILER	| XTRA LEASE			|
+
+
+
 
 |===
 
 
 Overall, there are basically 2 eras supported with the content here.  One is 1960s through the 1970s and the other is 1980's through to 2005 or so.
 
-[NOTE]
-These above are the pre-configured content items that each reside in their own folder.  This means that no special steps are needed if you want to install just one of the items.  They are self-contained.  If you install all of the items though, this will create some duplication of files.  Consolidating the cars into a single folder is possible, but that is left up to you.
+
+== Default Car and Trailer Assignment
+
+The list below shows how the car to trailer assignment is done in the current set of `.WAG` files.  This, of course, can be customized as desired and can be as simple as editing entries in the `.wag` files themselves.   No `S` file manipulation is required and it would be possible to add additional trailers from other sources, provided they have been created as scenery objects or developed using a 3D modeling program such as Blender.
+
+[cols="1,3", options="header"]
+|===
+| WAG File | Shape References
+
+| KTTX_153079.wag
+| upsz845115.s +
+  crz254100.s
+
+| KTTX_930921.wag
+| crz654593.s +
+  crz293310.s
+
+| RTTX_150330.wag
+| UPSZ854300.s +
+  UPSZ852048.s
+
+| RTTX_150643.wag
+| upsz847170.s +
+  upsz845624.s
+
+| RTTX_151072.wag
+| upsz292737.s +
+  upsz29067.s +
+  upsz293887.s
+
+| RTTX_151280.wag
+| CFKZ631030.s +
+  XTRZ231300.s
+
+| RTTX_152074.wag
+| upsz29101.s +
+  upsz850267.s +
+  YTZ521277.s
+
+| RTTX_154321.wag
+| upsz244109.s +
+  upsz344456.s +
+  upsz338977.s
+
+| RTTX_154729.wag
+| upsz29002.s +
+  upsz29110.s +
+  upsz294099.s
+
+| XTTX_150246.wag
+| crz204022.s
+
+| XTTX_150247.wag
+| (none)
+
+|===
+
+
 
 
 == Customization
 
-This content was created with customization in mind.  You can create any combination of trailers and hitches you desire.  Loading a particular livery trailer is as simple as specifying a particular shape file using the guidelines in this documentation.  A few examples have been included, some older ones without 3M stripes and older logos and some with stripes and more modern logos.  Customizing new liveries should also be pretty standard provided normal re-skinning methods are followed.
+This content was created with customization in mind.  You can create any combination of trailers and hitches you desire.  Loading a particular livery trailer is as simple as specifying a particular shape file using the placement guidelines in this documentation.  A few examples have been included, some older ones without 3M stripes and older logos and some with stripes and more modern logos.  Customizing new liveries should also be pretty standard provided normal re-skinning methods are followed.
 
-Users may additionally customize the models by:
+If you want to create a consist that matches a particular ERA, it should be as easy as choosing the flatcar base that best matches and then chosing the approrpiate trailers to go with it.
+
+Again, all defined and controlled by the WAG file.
+ 
+Users may customize the models by:
 
 * Editing textures
 * Creating alternative liveries
 * Modifying configuration files to select the preferred FreightAnim shape
 * Creating new trailer types (the UPS 45' drop bottom trailer has not been modeled, for example)
+* Some additional fonts may need to be installed if you make  use of the Affinity files, most of them are from RailSimStuff.com
+
+|===
+| USE	| Font Name
+
+| Conrail	| Consolidated
+| Bethlehem Builders Logo 	|  Symbols 
+| Stencil	| Phantom Stencil
+| COTS		| BoxStencil
+| Trailer Train Logo | RTTX
+| Misc | RailTnk1
+|===
+
+Some custom artwork was also used.
 
 Recommended tools include:
 
@@ -318,7 +435,7 @@ Recommended tools include:
 * Affinity Studio 
 * ImageMagick
 * OpenRails shape view tools (TSRE ShapeViewer preferred)
-* A PNG2DDS conversion script has been included with this repository
+* A PNG2DDS conversion script has been developed by the author - https://github.com/pwillard/Ace2DDS/releases
 
 === Supplemental Files
 
@@ -333,6 +450,7 @@ For content creators that want some extra content, a github repository has been 
 Link: https://github.com/pwillard/F89F-Additional-Content
 
 * The model uses wheel sets developed by Erick Cantu that were converted to Blender.
+* Sounds are supplied by NAVS Freight Sounds -- NAVSFR10.ZIP
 * Fonts/Lettering are from Railsimstuff.com
 * Reference material comes from hobby magazines,  google searches and rrpicturearchives.net
 * Affinity Studio is now free to use and is highly recommended.  The layered masters are available in this format.
@@ -389,4 +507,7 @@ Content, textures, models, and documentation are the intellectual property of th
 |0.3
 |Mar 2026
 |Updated configuration details
+|0.4
+|April 2026
+|Updated to match mega pack contents
 |===
