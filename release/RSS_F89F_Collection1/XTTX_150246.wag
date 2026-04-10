@@ -1,0 +1,143 @@
+SIMISA@@@@@@@@@@JINX0D0t______
+
+Comment(This is an Open Rails only model, don't try this with MSTS)
+Comment(Use SPECIFIC decal and generic 1 of 4 available bodies)
+
+Wagon ( XTTX_150246
+	Type ( Freight )
+	Name ("TOFC FLAT - XTTX_150246")
+	WagonShape ( RTTX_body0.s )
+	Size ( 3.142m 4.483m 27.93m )
+	comment ( 36.7t empty, 61t full )
+	Mass ( 36.7t-us )
+	WheelRadius ( 16.5in )
+
+Comment(=============================================)
+
+	ORTSFreightAnims(
+
+		Comment(28' Trailers are offset by 0.2)
+		Comment(45' Trailers are offest by 0.3)
+
+		WagonEmptyWeight(36.7t-us)
+
+		Comment(Decals)
+
+		FreightAnimStatic (
+			Shape( 	decals_XTTX_150246.s )
+			Offset( 0, 0, 0 )
+			FreightWeight( 0lb )
+		)
+
+		Comment(=====================================)
+		Comment( Hitch #1 : 12.65 -- must use flip   )
+		Comment(=====================================)
+
+
+		Comment(=====================================)
+		Comment( Hitch #2 : 5.65)
+		Comment(=====================================)
+
+		FreightAnimStatic (
+			Shape(hitch-stowed-brown.s)
+			Offset(0.0 1.045 5.65)
+		)
+
+		Comment(=====================================)
+		Comment( Hitch #3 : 1.20)
+		Comment(=====================================)
+
+		FreightAnimStatic (
+			Shape(hitch-stowed-black.s)
+			Offset(0.0 1.045 1.20)
+		)
+
+		Comment(=====================================)
+		Comment( Hitch #4 : -3.20)
+		Comment(=====================================)
+
+		FreightAnimStatic (
+			Shape(hitch-stowed-black.s)
+			Offset(0.0 1.045 -3.20)
+		)
+
+		Comment(=====================================)
+		Comment( Hitch #5 : -12.65)
+		Comment(=====================================)
+
+
+		Comment(B-END of car)
+
+		FreightAnimStatic (
+			Shape(hitch-deployed-brown.s)
+			Offset(0.0 1.045 -12.65)
+		)
+		FreightAnimStatic (
+			shape(crz204022.s)
+			offset(0.0 1.045 -12.95)
+			FreightWeight(3.1t)
+		)
+	)
+
+Comment(=============================================)
+
+	Coupling (
+		Type ( Automatic )
+		Spring (
+			Stiffness ( 8e4N/m 4.5e6N/m )
+			Damping ( 2e6N/m/s 2e6N/m/s )
+			Break ( 300000lb 300000lb )
+			r0 ( 12cm 12cm )
+		)
+		Velocity ( 0.2m/s )
+	)
+	Coupling (
+		Type ( Automatic )
+		Spring (
+			Stiffness ( 8e4N/m 4.5e6N/m )
+			Damping ( 2e6N/m/s 2e6N/m/s )
+			Break ( 300000lb 300000lb )
+			r0 ( 12cm 12cm )
+		)
+		Velocity ( -0.2m/s )
+	)
+	ORTSNumberAxles ( 4 )
+	ORTSNumberBogies ( 2 )
+	ORTSBearingType ( Roller )
+	Comment ( fcalc - 70 MPH, Standard Roller, 4 axles, A= 11.89ft^2 , Weight = 130 us tons, Cd=1.0 )
+	ORTSDavis_A ( 127.55lbf )
+	ORTSDavis_B ( 0.5505lbf/mph )
+	ORTSDavis_C ( 0.005945lbf/mph^2 )
+	Comment ( Setting standstill friction equal to Davis A per latest AREMA manual statement that starting resistance is negligible for roller bearings )
+	ORTSStandstillFriction ( 127.55lbf )
+	ORTSMergeSpeed ( 5mph )
+	ORTSWagonFrontalArea ( 11.89ft^2 )
+	ORTSDavisDragConstant ( 0.0024 )
+	ORTSTrackGauge ( 4ft 8.5in )
+	ORTSRigidWheelbase ( 5ft 8in )
+	ORTSLengthBogieCentre ( 65.8ft )
+	ORTSLengthCouplerFace ( 92.35ft )
+	Comment ( Assumed shank length 21.5in, coupler length 12in )
+	ORTSLengthCarBody ( 86.19ft )
+	ORTSWheelFlangeLength ( 0.62in )
+	ORTSMaximumWheelFlangeAngle ( 70deg )
+	ORTSUnbalancedSuperelevation ( 3in )
+	BrakeEquipmentType ( "Handbrake, Triple_valve, Auxilary_reservoir, Emergency_brake_reservoir" )
+	BrakeSystemType ( "Air_single_pipe" )
+	comment ( Load/Empty valve? = No )
+	MaxBrakeForce ( 34.83kN )
+	MaxHandbrakeForce ( 19.9kN )
+	NumberOfHandbrakeLeverSteps ( 100 )
+	BrakePipeVolume ( 0.82ft^3 )
+	EmergencyResCapacity ( 0.973ft^3 )
+   	ORTSBrakeShoeFriction ( 0.0 0.49 8.0 0.436 16.1 0.4 24.1 0.371 32.2 0.35 40.2 0.336 48.3 0.325 56.3 0.318 64.4 0.309 72.2 0.304 80.5 0.298 88.5 0.295 96.6 0.289 104.6 0.288)
+	EmergencyBrakeResMaxPressure( 90 )
+	TripleValveRatio( 2.5 )
+	MaxReleaseRate( 50 )
+	MaxApplicationRate( 50 )
+	MaxAuxilaryChargingRate( 20 )
+	EmergencyResVolumeMultiplier ( 1.461 )
+	EmergencyResChargingRate( 20 )
+	BrakeCylinderPressureForMaxBrakeBrakeForce ( 77 )
+	Sound ( "genfreightwag2.sms" )
+)
